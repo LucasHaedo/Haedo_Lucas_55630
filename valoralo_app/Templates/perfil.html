@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Perfil</title>
+    <style>
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'menu' %}" class="menu-button">Volver al menú</a>
+    <h1>Perfil</h1>
+    <p>Nombre de usuario: {{ username }}</p>
+<!-- Formulario para cambiar la contraseña -->
+<form method="post" action="{% url 'modificar_datos' %}">
+    {% csrf_token %}
+    {{ password_form.as_p }}
+    <input type="submit" value="Cambiar contraseña">
+</form>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Guardar cambios">
+</form> 
+
+</body>
+</html>

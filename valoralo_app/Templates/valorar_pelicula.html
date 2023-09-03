@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Valorar película</title>
+</head>
+<body>
+    <h1>Valorar película: {{ pelicula.titulo }}</h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Valorar">
+    </form>
+    <p>Gracias por valorar esta película.</p>
+    <form action="{% url 'menu' %}" method="GET">
+        <input type="submit" value="Volver al menu">
+    </form>
+</body>
+</html>

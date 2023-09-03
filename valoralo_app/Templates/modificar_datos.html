@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar Datos</title>
+</head>
+<body>
+    <h1>Modificar Datos</h1>
+    <form action="{% url 'modificar_datos' %}" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Guardar cambios">
+    </form>
+</body>
+</html>

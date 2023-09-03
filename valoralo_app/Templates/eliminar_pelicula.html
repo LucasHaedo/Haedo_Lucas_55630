@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Eliminar película</title>
+</head>
+<body>
+    <h1>Eliminar película</h1>
+
+    <p>¿Estás seguro de que deseas eliminar la película "{{ pelicula.titulo }}"?</p>
+
+    <form action="{% url 'eliminar_pelicula' pelicula.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Sí, eliminar">
+    </form>
+
+</body>
+</html>

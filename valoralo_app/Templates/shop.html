@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprar</title>
+    <script>
+        function comprarProducto() {
+            document.getElementById("mensaje").innerHTML = "Compra realizada, nos pondremos en contacto contigo 😊";
+        }
+        
+        function enviarConsulta() {
+    var consulta = document.getElementById("consulta").value;
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '/enviar_consulta/');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onload = function() {
+        if (xhr.status === 200) {
+            alert('Consulta enviada correctamente');
+        }
+        else {
+            alert('Hubo un problema al enviar la consulta');
+        }
+    };
+    xhr.send(encodeURI('consulta=' + consulta));
+}
+
+    </script>
+ <style>
+    .menu-button {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+    }
+</style>
+</head>
+<body>
+<a href="{% url 'menu' %}" class="menu-button">Volver al menú</a>
+    <h1>Tienda</h1>
+    <ul>
+        {% for producto in productos %}
+            <li>
+                <h2>{{ producto.titulo }}</h2>
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.titulo }}">
+                <p>$ {{ producto.precio }}</p>
+                <form action="{% url 'comprar_producto' producto.id %}" method="post">
+                    {% csrf_token %}
+                    <input type="button" value="Comprar" onclick="comprarProducto()">
+                </form>
+                <div id="mensaje"></div>
+                <textarea id="consulta"></textarea><br/>
+                <button onclick="enviarConsulta()">Enviar consulta</button><br/>
+            </li> 
+        {% endfor %}
+    </ul> 
+
+    <h2>Consultas</h2>
+    <ul>
+        {% for consulta in consultas %}
+            <li>{{ consulta.consulta }}</li>
+        {% endfor %}
+    </ul>
+
+</body> 
+</html>

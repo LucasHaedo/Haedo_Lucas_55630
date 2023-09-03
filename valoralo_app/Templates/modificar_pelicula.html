@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Modificar película</title>
+</head>
+<body>
+    <h1>Modificar película</h1>
+
+    <form action="{% url 'modificar_pelicula' pelicula.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Guardar cambios">
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>Valoralo</title>
+    <style>
+        header {
+            display: flex;
+            align-items: center;
+        }
+        header img {
+            height: 50px;
+            margin-right: 10px;
+        }
+        nav ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        nav li {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="{% static 'logo_valoralo.jpg' %}" alt="Logo">
+        <h1>Valoralo</h1>
+        <div style="margin-left: auto;">
+            <a href="{% url 'perfil' %}">Mi cuenta</a>
+            
+            <div>
+                <a href="{% url 'logout' %}">Cerrar sesión</a>
+            </div>
+        </div>
+        
+    </header>
+    <nav>
+        <ul>
+            <li><a href="{% url 'cargar_pelicula' %}">Cargar película</a></li>
+            <li><a href="{% url 'lista_peliculas' %}">Lista de películas</a></li>
+            <li><a href="{% url 'cargar_productos' %}">Vender</a></li>
+            <li><a href="{% url 'shop' %}">Comprar</a></li>
+            <li><a href="{% url 'about' %}">Acerca de</a></li>
+        </ul>
+    </nav>
+
+    <h2>Últimas valoraciones de películas</h2>
+    <div style="display: flex;">
+        {% for pelicula in peliculas %}
+            <div style="text-align: center; margin-right: 10px;">
+                <h3>{{ pelicula.titulo }}</h3>
+                <a href="{% url 'lista_peliculas' %}">
+                    <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}" style="height: 150px;">
+                </a>
+                <p>{{ pelicula.valoracion }} ({{ pelicula.cantidad }})</p>
+            </div>
+        {% endfor %}
+    </div>    
+
+    <h2>Recomendaciones de nuestra tienda</h2>
+<div style="display: flex;">
+    {% for producto in productos %}
+        <div style="text-align: center; margin-right: 10px;">
+            <h3>{{ producto.titulo }}</h3>
+            <a href="{% url 'shop' %}">
+                <img src="{{ producto.imagen.url }}" alt="{{ producto.titulo }}" style="height: 150px;">
+            </a>
+            <p>$ {{ producto.precio }}</p>
+        </div>
+    {% endfor %}
+</div>
+
+
+</body>
+</html>

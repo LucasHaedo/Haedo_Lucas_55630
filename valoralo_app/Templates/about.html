@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Acerca de</title>
+    <style>
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'menu' %}" class="menu-button">Volver al menú</a>
+    <h1>Acerca de Valoralo</h1>
+    <p>Nuestra empresa fue fundada por Lucas Haedo en el año 2023 con el proposito de darle un proposito a su gusto por las series y las peliculas y con esto nacio Valoralo, un lugar de encuentro donde los cinefilos hispanohablantes podrian dar su opinion y recomendacion acerca de peliculas y series. Mas tarde abrimos una tienda en donde los usuarios podrian intercambiar, vender y comprar merch relacionados con este mundo. </p>
+    <p>A largo plazo nuestra mision es impactar a nuestra comunidad con un servicio de streaming con precios competentes con el mercado y buscando que sea un lugar para contenido de calidad y clasicos que viven en nuestros corazones.</p>
+    <video width="560" height="315" controls>
+        <source src="{% static 'C:\Users\lhaedo\Desktop\Python\proyecto final\Valoralo\valoralo_app\statics\videos\Video_explicativo.mp4' %}" type="video/mp4">
+        Tu navegador no soporta la etiqueta de video.
+    </video>

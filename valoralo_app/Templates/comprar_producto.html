@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Comprar producto</title>
+</head>
+<body>
+    <h1>{{ producto.titulo }}</h1>
+    <img src="{{ producto.imagen.url }}" alt="{{ producto.titulo }}">
+    <p>{{ producto.precio }}</p>
+    <form action="{% url 'procesar_compra' producto.id %}" method="post">
+        {% csrf_token %}
+        <input type="submit" value="Comprar">
+    </form>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Subí tu valoracion</title>
+    <style>
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <a href="{% url 'menu' %}" class="menu-button">Volver al menú</a>
+    <h1>Subí tu valoracion</h1>
+    <form action="{% url 'cargar_pelicula' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label for="titulo">Título:</label>
+        <input type="text" name="titulo" id="titulo">
+        <br>
+        <label for="imagen">Imagen:</label>
+        <input type="file" name="imagen" id="imagen">
+        <br>
+        <label for="descripcion">Descripción:</label>
+        <textarea name="descripcion" id="descripcion"></textarea>
+        <br>
+        <label for="valoracion">Valoración:</label>
+        <select name="valoracion" id="valoracion">
+            <option value="1">1 Estrella</option>
+            <option value="2">2 Estrellas</option>
+            <option value="3">3 Estrellas</option>
+            <option value="4">4 Estrellas</option>
+            <option value="5">5 Estrellas</option>
+        </select>
+        <br>
+        <input type="submit" value="Cargar Película">
+    </form>
+</body>
+</html>

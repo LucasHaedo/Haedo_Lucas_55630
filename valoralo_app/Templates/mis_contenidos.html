@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mis contenidos</title>
+</head>
+<body>
+    <h1>Mis contenidos</h1>
+
+    <ul>
+        {% for pelicula, promedio, cantidad in peliculas %}
+            <li>
+                {{ pelicula.titulo }}:
+                {% if promedio %}
+                    {{ promedio }} ({{ cantidad }})
+                {% else %}
+                    Sin valoraciones
+                {% endif %}
+
+                <a href="{% url 'modificar_pelicula' pelicula.id %}">Modificar</a>
+                <a href="{% url 'eliminar_pelicula' pelicula.id %}">Eliminar</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+</body>
+</html>

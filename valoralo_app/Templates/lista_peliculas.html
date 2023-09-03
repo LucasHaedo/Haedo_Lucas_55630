@@ -1,0 +1,58 @@
+{% load static %}
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Lista de películas</title>
+    <style>
+        .menu-button {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .pelicula {
+            display: flex;
+            align-items: center;
+        }
+        .pelicula img {
+            height: 150px;
+            margin-right: 10px;
+        }
+        .pelicula h2 {
+            margin: 0;
+        }
+        .estrella {
+            color: gold;
+        }
+    </style>
+    <script src="{% static 'lista_peliculas.js' %}"></script>
+</head>
+<body>
+    <a href="{% url 'menu' %}" class="menu-button">Volver al menú</a>
+    <h1>Lista de películas</h1>
+    <ul>
+        {% for pelicula, promedio, cantidad, form, estrellas in peliculas %}
+        <li class="pelicula">
+            <img src="{{ pelicula.imagen.url }}" alt="{{ pelicula.titulo }}">
+            <div>
+                <h2>{{ pelicula.titulo }}</h2>
+                {{ pelicula.descripcion }}
+                {% if promedio %}
+                    <span class="promedio">{{ promedio|floatformat:2 }}</span> (<span class="cantidad">{{ cantidad }}</span>)
+                    {% for i in estrellas %}
+                        <span class="estrella">★</span>
+                    {% endfor %}
+                {% else %}
+                    Sin valoraciones
+                {% endif %}
+                <form action="{% url 'valorar_pelicula' pelicula.id %}" method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <input type="submit" value="Valorar">
+                </form>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    <script src="{% static 'lista_peliculas.js' %}"></script>
+</body>
+</html>
